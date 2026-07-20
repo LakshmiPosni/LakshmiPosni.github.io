@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#E91E63">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lata's Bach">
+</head>
+<body>
+<title>Lata's Bachelorette Party</title>
+<style>
+  :root{
+    color-scheme: light;
+    --blush:#FFF5F8;
+    --petal:#FFE3EE;
+    --cotton:#FBC4DA;
+    --bubble:#F48FB1;
+    --hot:#FF4D8D;
+    --rose:#E91E63;
+    --deep:#C2185B;
+    --plum:#4E0D26;
+    --wine:#7A2447;
+    --gold:#E8B84B;
+    --card:#ffffff;
+    --disp: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --script: "Snell Roundhand", "Segoe Script", "Bradley Hand", cursive;
+    --shadow: 0 6px 18px rgba(233,30,99,.16);
+    --header: linear-gradient(135deg,#FF7FB0 0%,#FF4D8D 42%,#E91E63 72%,#C2185B 100%);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--body);
+    color:var(--plum);
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #FFC9DE 0%, rgba(255,201,222,0) 60%),
+      #F6B6CE;
+    -webkit-font-smoothing:antialiased;
+  }
+  #app{
+    display:flex;flex-direction:column;
+    height:100dvh;min-height:100dvh;
+    max-width:480px;margin:0 auto;
+    background:var(--blush);
+    position:relative;overflow:hidden;
+    box-shadow:0 0 40px rgba(120,20,60,.25);
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:relative;
+    background:var(--header);
+    color:#fff;
+    padding:14px 20px 18px;
+    border-bottom-left-radius:26px;border-bottom-right-radius:26px;
+    box-shadow:0 6px 16px rgba(194,24,91,.32);
+    z-index:5;overflow:hidden;flex:none;
+  }
+  header .spark{position:absolute;color:#fff;opacity:.5;pointer-events:none;filter:blur(.2px);}
+  header h1{
+    font-family:var(--disp);font-weight:800;
+    font-size:26px;margin:0;letter-spacing:.2px;
+    display:flex;align-items:center;gap:8px;
+  }
+  header p{margin:3px 0 0;font-size:13.5px;font-weight:500;opacity:.96;}
+  header .editname{
+    position:absolute;top:14px;right:16px;
+    background:rgba(255,255,255,.22);border:0;color:#fff;
+    font-family:var(--disp);font-weight:700;font-size:11px;
+    padding:6px 11px;border-radius:999px;cursor:pointer;backdrop-filter:blur(4px);
+  }
+  header .editname:active{transform:scale(.94);}
+
+  /* ---------- Main scroll area ---------- */
+  main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 16px 24px;}
+  .view{animation:rise .35s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+  @media (prefers-reduced-motion: reduce){.view{animation:none;}}
+
+  /* ---------- Day banner ---------- */
+  .banner{
+    background:var(--header);color:#fff;border-radius:20px;
+    padding:16px 18px;box-shadow:var(--shadow);margin-bottom:18px;
+  }
+  .banner .wd{font-family:var(--disp);font-weight:700;font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;opacity:.92;}
+  .banner .dt{font-family:var(--disp);font-weight:800;font-size:30px;line-height:1.05;margin:2px 0;}
+  .banner .sub{font-size:14px;font-weight:600;opacity:.97;}
+
+  /* ---------- Section titles ---------- */
+  .sect{display:flex;align-items:center;gap:8px;margin:22px 2px 12px;}
+  .sect .ic{font-size:17px;}
+  .sect h2{font-family:var(--disp);font-weight:800;font-size:19px;color:var(--deep);margin:0;}
+
+  /* ---------- Cards ---------- */
+  .card{
+    background:var(--card);border:1px solid var(--cotton);
+    border-radius:20px;padding:16px;box-shadow:var(--shadow);
+  }
+  .card + .card{margin-top:14px;}
+
+  /* schedule rows */
+  .row{display:flex;flex-direction:column;gap:8px;padding:11px 0;}
+  .row + .row{border-top:1px solid var(--petal);}
+  .row .top{display:flex;align-items:flex-start;gap:11px;}
+  .pill{
+    flex:none;font-family:var(--disp);font-weight:800;font-size:11.5px;color:#fff;
+    background:var(--rose);padding:5px 10px;border-radius:999px;white-space:nowrap;
+    font-variant-numeric:tabular-nums;letter-spacing:.2px;box-shadow:0 2px 6px rgba(233,30,99,.3);
+  }
+  .dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--bubble);margin-top:6px;}
+  .row .title{font-weight:650;font-size:15.5px;color:var(--plum);}
+  .sublist{display:flex;flex-direction:column;gap:6px;margin:2px 0 0 8px;}
+  .sublist span{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--wine);}
+  .sublist span::before{content:"✓";color:var(--hot);font-weight:800;font-size:12px;}
+
+  /* ideas */
+  .idea{display:flex;gap:10px;font-size:15px;color:var(--plum);padding:5px 0;}
+  .idea::before{content:"✦";color:var(--hot);font-size:13px;line-height:1.5;}
+
+  /* outfit theme */
+  .outfit .label{font-family:var(--disp);font-weight:800;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--hot);}
+  .outfit .theme{font-family:var(--disp);font-weight:800;font-size:21px;color:var(--deep);margin:2px 0 6px;}
+  .outfit .note{font-size:14px;color:var(--wine);line-height:1.45;}
+  .palette{display:flex;gap:8px;margin:13px 0;}
+  .swatch{width:26px;height:26px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 5px rgba(0,0,0,.14);}
+  .inspo-label{font-family:var(--disp);font-weight:800;font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--rose);margin-bottom:9px;}
+  .tiles{display:flex;gap:11px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
+  .tiles::-webkit-scrollbar{display:none;}
+  .tile{
+    flex:none;width:120px;height:158px;border-radius:16px;border:2px solid #fff;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+    box-shadow:0 4px 10px rgba(244,143,177,.4);color:#fff;
+  }
+  .tile .big{font-size:34px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.2));}
+  .tile .dress{font-size:26px;opacity:.9;}
+
+  /* ---------- Packing ---------- */
+  .pack-banner{background:var(--header);color:#fff;border-radius:20px;padding:16px 18px;box-shadow:var(--shadow);margin-bottom:8px;}
+  .pack-banner h2{font-family:var(--disp);font-weight:800;font-size:25px;margin:0;}
+  .pack-banner .count{font-size:14px;font-weight:600;opacity:.96;margin-top:3px;}
+  .bar{height:9px;border-radius:99px;background:rgba(255,255,255,.35);margin-top:11px;overflow:hidden;}
+  .bar > i{display:block;height:100%;background:#fff;border-radius:99px;transition:width .35s ease;}
+  .check{display:flex;align-items:center;gap:12px;padding:9px 0;cursor:pointer;user-select:none;}
+  .check + .check{border-top:1px solid var(--petal);}
+  .box{flex:none;width:23px;height:23px;border-radius:50%;border:2.4px solid var(--bubble);display:flex;align-items:center;justify-content:center;transition:.18s;}
+  .box::after{content:"";width:11px;height:11px;border-radius:50%;background:var(--rose);transform:scale(0);transition:.18s;}
+  .check.on .box{border-color:var(--rose);}
+  .check.on .box::after{transform:scale(1);}
+  .check .txt{font-size:15px;color:var(--plum);transition:.18s;}
+  .check.on .txt{color:var(--bubble);text-decoration:line-through;}
+
+  /* ---------- Tab bar ---------- */
+  nav{
+    flex:none;display:flex;background:#fff;
+    border-top:1px solid var(--cotton);
+    padding:8px 6px calc(8px + env(safe-area-inset-bottom,0));
+    box-shadow:0 -4px 16px rgba(194,24,91,.1);z-index:5;
+  }
+  nav button{
+    flex:1;background:none;border:0;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;gap:3px;
+    font-family:var(--disp);font-weight:700;font-size:10.5px;color:var(--bubble);
+    padding:5px 2px;border-radius:12px;transition:.15s;
+  }
+  nav button .tic{font-size:19px;line-height:1;}
+  nav button.active{color:var(--rose);}
+  nav button.active .tlabel{background:var(--petal);padding:2px 9px;border-radius:999px;}
+
+  /* ---------- Name gate ---------- */
+  .gate{
+    position:absolute;inset:0;z-index:50;
+    background:linear-gradient(160deg,#FFE3EE 0%,#FBC4DA 55%,#F8A9C6 100%);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:32px;gap:20px;
+  }
+  .gate.hide{animation:gateout .5s ease forwards;pointer-events:none;}
+  @keyframes gateout{to{opacity:0;transform:scale(1.04);visibility:hidden;}}
+  .gate .heart{font-size:66px;animation:beat 1.6s ease-in-out infinite;}
+  @keyframes beat{0%,100%{transform:scale(1);}50%{transform:scale(1.12);}}
+  @media (prefers-reduced-motion: reduce){.gate .heart{animation:none;}}
+  .gate .welcome{font-size:18px;color:var(--wine);font-weight:600;}
+  .gate .bride{font-family:var(--script);font-size:52px;line-height:1;color:var(--deep);font-weight:700;}
+  .gate .party{font-family:var(--disp);font-weight:800;font-size:26px;color:var(--rose);margin-top:-4px;}
+  .gate .q{font-family:var(--disp);font-weight:700;font-size:17px;color:var(--plum);margin-top:6px;}
+  .gate input{
+    width:100%;max-width:300px;font-family:var(--body);font-size:17px;text-align:center;
+    padding:15px;border-radius:16px;border:2px solid var(--bubble);background:#fff;color:var(--plum);outline:none;
+  }
+  .gate input:focus{border-color:var(--rose);box-shadow:0 0 0 4px rgba(233,30,99,.15);}
+  .gate .go{
+    width:100%;max-width:300px;border:0;cursor:pointer;color:#fff;
+    font-family:var(--disp);font-weight:800;font-size:17px;padding:15px;border-radius:16px;
+    background:var(--header);box-shadow:0 8px 18px rgba(233,30,99,.35);transition:.15s;
+  }
+  .gate .go:disabled{opacity:.5;}
+  .gate .go:active{transform:scale(.98);}
+</style>
+
+<div id="app">
+  <div class="gate" id="gate">
+    <div class="heart">💗</div>
+    <div>
+      <div class="welcome">Welcome to</div>
+      <div class="bride">Lata's</div>
+      <div class="party">Bachelorette Party</div>
+    </div>
+    <div class="q">First — what's your name?</div>
+    <input id="nameInput" type="text" placeholder="Your name" autocomplete="given-name" maxlength="24" />
+    <button class="go" id="goBtn" disabled>Let's go! 🎉</button>
+  </div>
+
+  <header id="hdr" hidden>
+    <button class="editname" id="editBtn">edit</button>
+    <h1 id="hello"></h1>
+    <p id="welcomeLine"></p>
+  </header>
+
+  <main id="main" hidden></main>
+
+  <nav id="tabs" hidden></nav>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const BRIDE = "Lata";
+
+  const days = [
+    { key:"sep3", tab:"Sept 3", tabIcon:"🧳", weekday:"Thursday", date:"Sept 3", subtitle:"Travel Day", ymd:[2026,9,3],
+      schedule:[
+        {title:"Everyone lands! ✈️"},
+        {title:"Grocery shopping", sub:["Water","Alcohol","Anything else we need"]},
+        {title:"Pregame"},
+        {title:"Go around Old Town"},
+        {title:"Shopping"},
+        {title:"Dinner and drinks"},
+        {title:"Pool at night 🌙"},
+      ],
+      ideas:[],
+      outfits:[] },
+
+    { key:"sep4", tab:"Sept 4", tabIcon:"🎶", weekday:"Friday", date:"Sept 4", subtitle:"Calvin Harris Night", ymd:[2026,9,4],
+      schedule:[
+        {title:"Cook breakfast together", time:[10,0]},
+        {title:"Pool / beach day", time:[11,30]},
+        {title:"Start getting ready", time:[13,0]},
+        {title:"Order in dinner", time:[15,0]},
+        {title:"Finish getting ready", time:[16,0]},
+        {title:"Outfit photos + pregaming", time:[16,0]},
+        {title:"Leave for Calvin Harris", time:[18,45]},
+      ],
+      ideas:["Take PICS throughout the day 📸"],
+      outfits:[ {label:"Outfit Theme", theme:"Glitz & Glam", note:"Sparkle head to toe — but NO ONE wear white or silver ✨",
+        palette:["#E91E63","#F6C6D9"], icon:"✨", tiles:3} ] },
+
+    { key:"sep5", tab:"Sept 5", tabIcon:"🚤", weekday:"Saturday", date:"Sept 5", subtitle:"Boat Day + Ushuaïa", ymd:[2026,9,5],
+      schedule:[
+        {title:"Head out to the boat", time:[16,0]},
+        {title:"Boat 🚤", time:[18,0]},
+        {title:"Going out — start at Ushuaïa", time:[22,0]},
+      ],
+      ideas:[],
+      outfits:[
+        {label:"Boat Outfit", theme:"Tequila Sunrise", note:"Orange, pink, red, yellow — sunset colours only 🌅",
+          palette:["#FF6B00","#FF3D6E","#FF1744","#FFC400","#FF8A65"], icon:"🌅", tiles:3},
+        {label:"Going Out Outfit", theme:"Cowgirl", note:"Yeehaw — western wear! Boots, hats & fringe in black & brown 🤠",
+          palette:["#1E1B18","#4E342E","#8B5E3C"], icon:"🤠", tiles:2},
+      ] },
+
+    { key:"sep6", tab:"Sept 6", tabIcon:"🏖️", weekday:"Sunday", date:"Sept 6", subtitle:"Beach Day", ymd:[2026,9,6],
+      schedule:[ {title:"Beach day 🏖️", time:[11,0]} ],
+      ideas:["Relax, recover, soak up the last day together 💕"],
+      outfits:[ {label:"Vibe", theme:"Beach Day", note:"Cute swimsuits + cover-ups. Sunnies mandatory 😎",
+        palette:["#FF80AB","#FFD1DC","#F8BBD0","#FFECB3"], icon:"🏖️", tiles:2} ] },
+  ];
+
+  const packing = [
+    { name:"Outfits", icon:"👗", items:["Glitz & glam outfit (Fri – no white/silver!)","Tequila sunrise boat outfit (Sat)","Going-out outfit (Sat night)","Swimsuits + cover-ups","Comfy travel / lounge clothes","PJs"] },
+    { name:"Shoes", icon:"👠", items:["Heels for going out","Sandals / flip flops","Comfy walking shoes","Sneakers"] },
+    { name:"Accessories", icon:"🕶️", items:["Sunglasses","Jewelry for glam night","Small crossbody / clutch","Beach bag","Hat"] },
+    { name:"Beauty & Toiletries", icon:"✨", items:["Makeup + remover","Skincare","Sunscreen (SPF!)","Hair tools + products","Toothbrush & toothpaste","Deodorant, perfume","Hair ties / bobby pins"] },
+    { name:"Health & Essentials", icon:"🩹", items:["Phone charger + battery pack","Medications / vitamins","Advil / hangover essentials","Band-aids","Aloe vera"] },
+    { name:"Documents & Money", icon:"💳", items:["ID / passport","Boarding passes / tickets","Cards + some cash","Concert / event tickets"] },
+    { name:"Fun Extras", icon:"🎉", items:["Sashes / decorations","Instant / disposable camera 📸","Portable speaker","Matching PJs or shirts","Reusable water bottle"] },
+  ];
+
+  // ---------- helpers ----------
+  const $ = s => document.querySelector(s);
+  const el = (t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
+  const esc = s => String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+
+  function fmtTime(t){
+    if(!t) return null;
+    let [h,m]=t, ap=h>=12?"PM":"AM", hh=h%12; if(hh===0)hh=12;
+    return hh+":"+String(m).padStart(2,"0")+" "+ap;
+  }
+  function gradient(colors){
+    if(colors.length===1) return colors[0];
+    return "linear-gradient(140deg,"+colors.join(",")+")";
+  }
+
+  const store = {
+    name(){ return localStorage.getItem("lata_name")||""; },
+    setName(v){ localStorage.setItem("lata_name",v); },
+    packed(){ try{return new Set(JSON.parse(localStorage.getItem("lata_packed")||"[]"));}catch(e){return new Set();} },
+    setPacked(set){ localStorage.setItem("lata_packed",JSON.stringify([...set])); },
+  };
+
+  let active = "sep4"; // default to first big day
+
+  // ---------- render header ----------
+  function renderHeader(){
+    const n = store.name();
+    $("#hello").innerHTML = "Hello, "+esc(n)+"! <span style='font-size:22px'>👋</span>";
+    $("#welcomeLine").textContent = "Welcome to "+BRIDE+"'s Bachelorette Party 💕";
+    // sparkle dots
+    const hdr=$("#hdr");
+    hdr.querySelectorAll(".spark").forEach(s=>s.remove());
+    [["✦",12,"18%","60%"],["✧",9,"78%","30%"],["✦",8,"52%","78%"]].forEach(([c,sz,l,t])=>{
+      const s=el("span","spark",c); s.style.fontSize=sz+"px"; s.style.left=l; s.style.top=t; hdr.appendChild(s);
+    });
+  }
+
+  // ---------- render tabs ----------
+  function renderTabs(){
+    const nav=$("#tabs"); nav.innerHTML="";
+    days.forEach(d=>{
+      const b=el("button", d.key===active?"active":"",
+        "<span class='tic'>"+d.tabIcon+"</span><span class='tlabel'>"+d.date+"</span>");
+      b.onclick=()=>{active=d.key;renderTabs();renderMain();$("#main").scrollTop=0;};
+      nav.appendChild(b);
+    });
+    const p=el("button", active==="pack"?"active":"",
+      "<span class='tic'>🧳</span><span class='tlabel'>Pack</span>");
+    p.onclick=()=>{active="pack";renderTabs();renderMain();$("#main").scrollTop=0;};
+    nav.appendChild(p);
+  }
+
+  // ---------- render main ----------
+  function renderMain(){
+    const main=$("#main"); main.innerHTML="";
+    const v=el("div","view");
+    if(active==="pack") v.appendChild(renderPack());
+    else v.appendChild(renderDay(days.find(d=>d.key===active)));
+    main.appendChild(v);
+  }
+
+  function renderDay(d){
+    const wrap=el("div");
+    const b=el("div","banner");
+    b.innerHTML="<div class='wd'>"+d.weekday+"</div><div class='dt'>"+d.date+"</div><div class='sub'>"+esc(d.subtitle)+"</div>";
+    wrap.appendChild(b);
+
+    if(d.schedule.length){
+      wrap.appendChild(sect("🕒","Schedule"));
+      const card=el("div","card");
+      d.schedule.forEach(item=>{
+        const row=el("div","row");
+        const top=el("div","top");
+        if(item.time) top.appendChild(el("div","pill",fmtTime(item.time)));
+        else top.appendChild(el("div","dot"));
+        top.appendChild(el("div","title",esc(item.title)));
+        row.appendChild(top);
+        if(item.sub){
+          const sl=el("div","sublist");
+          item.sub.forEach(s=>sl.appendChild(el("span",null,esc(s))));
+          row.appendChild(sl);
+        }
+        card.appendChild(row);
+      });
+      wrap.appendChild(card);
+    }
+
+    if(d.outfits.length){
+      wrap.appendChild(sect("👗", d.outfits.length>1?"Outfit Themes":"Outfit Theme"));
+      d.outfits.forEach(o=>{
+        const card=el("div","card outfit");
+        card.appendChild(el("div","label",o.label));
+        card.appendChild(el("div","theme",esc(o.theme)));
+        card.appendChild(el("div","note",esc(o.note)));
+        const pal=el("div","palette");
+        o.palette.forEach(c=>{const s=el("span","swatch");s.style.background=c;pal.appendChild(s);});
+        card.appendChild(pal);
+        card.appendChild(el("div","inspo-label","Outfit inspo"));
+        const tiles=el("div","tiles");
+        for(let i=0;i<o.tiles;i++){
+          const t=el("div","tile");
+          const rot=o.palette.slice(i%o.palette.length).concat(o.palette.slice(0,i%o.palette.length));
+          t.style.background=gradient(rot);
+          t.innerHTML="<span class='big'>"+o.icon+"</span><span class='dress'>👗</span>";
+          tiles.appendChild(t);
+        }
+        card.appendChild(tiles);
+        wrap.appendChild(card);
+      });
+    }
+    return wrap;
+  }
+
+  function sect(ic,txt){ return el("div","sect","<span class='ic'>"+ic+"</span><h2>"+txt+"</h2>"); }
+
+  function renderPack(){
+    const wrap=el("div");
+    const packed=store.packed();
+    const total=packing.reduce((a,c)=>a+c.items.length,0);
+
+    const banner=el("div","pack-banner");
+    banner.innerHTML="<h2>What to Pack 🧳</h2><div class='count'><span id='pc'>"+packed.size+"</span> of "+total+" packed</div><div class='bar'><i id='pbar' style='width:"+(packed.size/total*100)+"%'></i></div>";
+    wrap.appendChild(banner);
+
+    function refresh(){
+      const p=store.packed();
+      $("#pc").textContent=p.size;
+      $("#pbar").style.width=(p.size/total*100)+"%";
+    }
+
+    packing.forEach(cat=>{
+      wrap.appendChild(sect(cat.icon,cat.name));
+      const card=el("div","card");
+      cat.items.forEach(item=>{
+        const id=cat.name+"|"+item;
+        const on=packed.has(id);
+        const row=el("div","check"+(on?" on":""));
+        row.innerHTML="<span class='box'></span><span class='txt'>"+esc(item)+"</span>";
+        row.onclick=()=>{
+          const set=store.packed();
+          if(set.has(id)){set.delete(id);row.classList.remove("on");}
+          else{set.add(id);row.classList.add("on");}
+          store.setPacked(set);refresh();
+        };
+        card.appendChild(row);
+      });
+      wrap.appendChild(card);
+    });
+
+    return wrap;
+  }
+
+  // ---------- gate ----------
+  function enterApp(){
+    $("#gate").classList.add("hide");
+    ["#hdr","#main","#tabs"].forEach(s=>$(s).hidden=false);
+    renderHeader();renderTabs();renderMain();
+  }
+
+  function initGate(){
+    const input=$("#nameInput"), go=$("#goBtn");
+    const val=()=>input.value.trim();
+    input.addEventListener("input",()=>{go.disabled=val().length===0;});
+    function submit(){
+      if(!val())return;
+      store.setName(val());
+      enterApp();
+    }
+    go.addEventListener("click",submit);
+    input.addEventListener("keydown",e=>{if(e.key==="Enter")submit();});
+    setTimeout(()=>input.focus(),400);
+  }
+
+  // ---------- edit name ----------
+  $("#editBtn").addEventListener("click",()=>{
+    const cur=store.name();
+    const n=prompt("Your name:",cur);
+    if(n && n.trim()){store.setName(n.trim());renderHeader();}
+  });
+
+  // ---------- boot ----------
+  if(store.name()){
+    $("#gate").classList.add("hide");$("#gate").style.visibility="hidden";
+    ["#hdr","#main","#tabs"].forEach(s=>$(s).hidden=false);
+    renderHeader();renderTabs();renderMain();
+  } else {
+    initGate();
+  }
+})();
+</script>
+</body>
+</html>

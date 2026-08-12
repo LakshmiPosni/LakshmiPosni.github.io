@@ -233,10 +233,10 @@
     { key:"sep3", tab:"Sept 3", tabIcon:"🧳", weekday:"Thursday", date:"Sept 3", subtitle:"Travel Day", ymd:[2026,9,3],
       schedule:[
         {title:"Everyone lands ✈️"},
-        {title:"Grocery shopping 🛒", sub:["Water","Alcohol","Anything else we need"]},
+        {title:"Grocery shopping 🛒", sub:["Water","Breakfast items for Friday breakfast","Breakfast items in general","Juices","Alcohol","LOTS OF Snacks!!!","Anything else we need","Text the group chat for suggestions!"]},
         {title:"Pregame 🥂"},
         {title:"Explore Old Town & shopping 🛍️"},
-        {title:"Dinner and drinks 🍽️"},
+        {title:"Dinner and drinks 🍽️", time:[19,0]},
         {title:"Pool at night 🌙"},
       ],
       ideas:[],
@@ -244,13 +244,13 @@
 
     { key:"sep4", tab:"Sept 4", tabIcon:"🎶", weekday:"Friday", date:"Sept 4", subtitle:"Calvin Harris Night", ymd:[2026,9,4],
       schedule:[
-        {title:"Cook breakfast together", time:[10,0]},
-        {title:"Pool / beach day", time:[11,30]},
-        {title:"Start getting ready", time:[13,0]},
-        {title:"Order in dinner", time:[15,0]},
-        {title:"Finish getting ready", time:[16,0]},
-        {title:"Outfit photos + pregaming", time:[16,0]},
-        {title:"Leave for Calvin Harris", time:[18,45]},
+        {title:"Cook breakfast together 🍳", time:[10,0]},
+        {title:"Pool / beach day 🏖️", time:[11,30]},
+        {title:"Start getting ready 💄", time:[13,0]},
+        {title:"Order in dinner 🥡", time:[15,0]},
+        {title:"Finish getting ready 💅", time:[16,0]},
+        {title:"Outfit photos + pregaming 📸", time:[16,0]},
+        {title:"Leave for Calvin Harris 🎶", time:[18,45]},
       ],
       ideas:["Take PICS throughout the day 📸"],
       outfits:[ {label:"Outfit Theme", theme:"Glitz & Glam", note:"Sparkle head to toe — but NO ONE wear white or silver ✨",
@@ -258,9 +258,9 @@
 
     { key:"sep5", tab:"Sept 5", tabIcon:"🚤", weekday:"Saturday", date:"Sept 5", subtitle:"Boat Day + Ushuaïa", ymd:[2026,9,5],
       schedule:[
-        {title:"Head out to the boat", time:[16,0]},
+        {title:"Head out to the boat 🚗", time:[16,0]},
         {title:"Boat 🚤", time:[18,0]},
-        {title:"Going out — start at Ushuaïa", time:[22,0]},
+        {title:"Going out — start at Ushuaïa 🎉", time:[22,0]},
       ],
       ideas:[],
       outfits:[
@@ -384,16 +384,6 @@
         const pal=el("div","palette");
         o.palette.forEach(c=>{const s=el("span","swatch");s.style.background=c;pal.appendChild(s);});
         card.appendChild(pal);
-        card.appendChild(el("div","inspo-label","Outfit inspo"));
-        const tiles=el("div","tiles");
-        for(let i=0;i<o.tiles;i++){
-          const t=el("div","tile");
-          const rot=o.palette.slice(i%o.palette.length).concat(o.palette.slice(0,i%o.palette.length));
-          t.style.background=gradient(rot);
-          t.innerHTML="<span class='big'>"+o.icon+"</span><span class='dress'>👗</span>";
-          tiles.appendChild(t);
-        }
-        card.appendChild(tiles);
         wrap.appendChild(card);
       });
     }

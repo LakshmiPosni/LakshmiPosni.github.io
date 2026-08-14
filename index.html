@@ -60,11 +60,8 @@
 
   /* ---------- Photo collage background ---------- */
   #collageBg{position:fixed;inset:0;z-index:0;overflow:hidden;background:#F6C9DB;}
-  #collageBg .grid{display:flex;flex-wrap:wrap;width:100%;height:100%;transform:scale(1.08);transform-origin:center;filter:blur(0.4px) saturate(1.05) brightness(1.03);}
-  #collageBg .grid img{width:16.666%;aspect-ratio:1/1;object-fit:cover;display:block;}
-  #collageBg .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,240,246,.22) 0%,rgba(255,226,237,.12) 50%,rgba(255,240,246,.24) 100%);}
-  @media (prefers-reduced-motion: no-preference){#collageBg .grid{animation:drift 60s ease-in-out infinite alternate;}}
-  @keyframes drift{from{transform:scale(1.08) translateY(0);}to{transform:scale(1.12) translateY(-2%);}}
+  #collageBg .fixed-collage{display:block;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(1.04) brightness(.9);}
+  #collageBg .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(34,7,18,.08) 0%,rgba(34,7,18,.13) 52%,rgba(34,7,18,.18) 100%);}
   body.app-open{background:var(--page-end);}
   body.app-open #collageBg{opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s ease;}
   body.app-open #app{background:linear-gradient(180deg,var(--page-start) 0%,var(--page-end) 100%);box-shadow:0 0 40px rgba(120,20,60,.25);transition:background .3s ease;}
@@ -236,6 +233,33 @@
     background:rgba(255,239,245,.92);box-shadow:0 8px 22px rgba(0,0,0,.28);transition:.15s;
   }
   .gate .go:active{transform:scale(.98);}
+
+  /* ---------- Tablet and desktop layout ---------- */
+  @media (min-width:600px){
+    #app{width:100%;max-width:none;}
+    main{padding:28px clamp(28px,7vw,96px) 36px;}
+    .view{width:100%;max-width:960px;margin:0 auto;}
+    .banner{padding:22px 26px;}
+    .banner .wd{font-size:27px;}
+    .banner .dt{font-size:42px;}
+    .card{padding:20px 22px;}
+    .polaroids{max-width:760px;margin:24px auto 12px;}
+    .polaroid{width:30%;max-width:220px;padding:8px 8px 34px;}
+    .photo-window{height:190px;}
+    nav{justify-content:center;gap:10px;padding-left:clamp(20px,16vw,260px);padding-right:clamp(20px,16vw,260px);}
+    nav button{flex:0 1 170px;max-width:170px;}
+    .gate{padding:48px;}
+    .gate .welcome{font-size:19px;}
+    .gate .bride{font-size:72px;}
+    .gate .party{font-size:46px;}
+    .gate .locale{font-size:14px;}
+    .gate .go{max-width:340px;font-size:18px;}
+  }
+  @media (min-width:1000px){
+    main{padding-left:clamp(80px,12vw,180px);padding-right:clamp(80px,12vw,180px);}
+    .view{max-width:1050px;}
+    .photo-window{height:220px;}
+  }
 </style>
 
 <div id="collageBg"></div>
@@ -327,12 +351,12 @@
   (function buildCollage(){
     const bg = document.getElementById("collageBg");
     if(!bg) return;
-    const pool = PHOTOS.slice();
-    for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
-    const grid = document.createElement("div"); grid.className="grid";
-    const need = 108;
-    for(let i=0;i<need;i++){ const im=document.createElement("img"); im.src=pool[i%pool.length]; im.alt=""; im.decoding="async"; grid.appendChild(im); }
-    bg.appendChild(grid);
+    const collage = document.createElement("img");
+    collage.className="fixed-collage";
+    collage.src="login-collage.jpg";
+    collage.alt="";
+    collage.decoding="async";
+    bg.appendChild(collage);
     const veil = document.createElement("div"); veil.className="veil"; bg.appendChild(veil);
   })();
 
@@ -397,7 +421,7 @@
   const DAY_PHOTOS = {
     sep3:[{src:"photos_small/sept3-first-polaroid.jpg",position:"center 72%"},{src:"photos_small/sept3-middle-polaroid.jpg",position:"center 72%"},15,24,33],
     sep4:[{src:"photos_small/sept4-first-polaroid.jpg",position:"center 50%"},{src:"photos_small/sept4-middle-polaroid.jpg",position:"center 50%"},{src:"photos_small/sept4-third-polaroid.png",position:"center 50%"},36,45],
-    sep5:[20,{src:29,position:"center 58%",scale:1.8},{src:"photos_small/sept5-third-polaroid.jpg",position:"center 48%"},47,56],
+    sep5:[20,{src:29,position:"center 58%"},{src:"photos_small/sept5-third-polaroid.jpg",position:"center 48%"},47,56],
     sep6:[{src:"photos_small/sept6-first-polaroid.jpg",position:"center 55%"},{src:"photos_small/sept6-middle-polaroid.jpg",position:"center 78%"},{src:"photos_small/sept6-third-polaroid.jpg",position:"center 50%"},32,41],
   };
 

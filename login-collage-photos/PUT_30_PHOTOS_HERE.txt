@@ -1,0 +1,6 @@
+Drop the 30 final login collage photos into this folder.
+
+JPG, JPEG, PNG, and HEIC files are all okay.
+The filenames do not matter.
+
+Once all 30 photos are here, tell Codex: "The 30 collage photos are ready."

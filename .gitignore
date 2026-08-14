@@ -1,5 +1,7 @@
 .DS_Store
 photos/
 photos_small/
+login-collage-photos/*
+!login-collage-photos/PUT_30_PHOTOS_HERE.txt
 *.bak
 zpreview_*.html

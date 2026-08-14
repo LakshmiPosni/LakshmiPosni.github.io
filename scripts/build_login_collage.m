@@ -55,6 +55,15 @@ int main(void) {
 
         for (NSUInteger index = 0; index < photos.count; index++) {
             NSURL *photoURL = photos[index];
+            if ([photoURL.lastPathComponent isEqualToString:@"IMG_0985.JPG"]) {
+                photoURL = [sourceURL URLByAppendingPathComponent:@"IMG_2773.HEIC"];
+            } else if ([photoURL.lastPathComponent isEqualToString:@"IMG_2773.HEIC"]) {
+                photoURL = [sourceURL URLByAppendingPathComponent:@"IMG_0985.JPG"];
+            } else if ([photoURL.lastPathComponent isEqualToString:@"20181201_175432000_iOS.JPG"]) {
+                photoURL = [sourceURL URLByAppendingPathComponent:@"IMG_2052.JPG"];
+            } else if ([photoURL.lastPathComponent isEqualToString:@"IMG_2052.JPG"]) {
+                photoURL = [sourceURL URLByAppendingPathComponent:@"20181201_175432000_iOS.JPG"];
+            }
             NSURL *normalizedURL = [temporaryURL URLByAppendingPathComponent:[photoURL.lastPathComponent stringByAppendingString:@".png"]];
             NSTask *converter = [[NSTask alloc] init];
             converter.executableURL = [NSURL fileURLWithPath:@"/usr/bin/qlmanage"];

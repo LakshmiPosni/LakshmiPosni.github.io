@@ -160,7 +160,7 @@
   /* outfit theme */
   .outfit .label{font-family:var(--disp);font-weight:800;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--hot);}
   .outfit .theme{font-family:var(--serif);font-weight:600;font-size:23px;color:var(--deep);margin:2px 0 6px;letter-spacing:.3px;}
-  .outfit .note{font-size:14px;color:var(--wine);line-height:1.45;}
+  .outfit .note{font-size:14px;color:var(--wine);line-height:1.45;white-space:pre-line;}
   .palette{display:flex;gap:8px;margin:13px 0;}
   .swatch{width:26px;height:26px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 5px rgba(0,0,0,.14);}
   .inspo-label{font-family:var(--disp);font-weight:800;font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--rose);margin-bottom:9px;}
@@ -353,7 +353,7 @@
     if(!bg) return;
     const collage = document.createElement("img");
     collage.className="fixed-collage";
-    collage.src="login-collage.jpg";
+    collage.src="login-collage.jpg?v=20260814-7";
     collage.alt="";
     collage.decoding="async";
     bg.appendChild(collage);
@@ -374,7 +374,7 @@
         {title:"Pool at night & Bach games hehe 🌙🎲"},
       ],
       ideas:[],
-      outfits:[ {label:"Outfit Theme", theme:"Shop and Dine", note:"🛍️ 🍽️", palette:[]} ] },
+      outfits:[ {label:"Outfit Theme", theme:"Shop, Dine & PJ", note:"Bring shortest shorts or boy short underwear for PJ night fit\n🛍️ 🍽️ 🛌", palette:[]} ] },
 
     { key:"sep4", tab:"Sept 4", tabIcon:"🎶", weekday:"Friday", date:"Sept 4", subtitle:"Calvin Harris era ✨", ymd:[2026,9,4],
       schedule:[

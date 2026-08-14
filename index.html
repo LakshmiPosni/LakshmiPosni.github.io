@@ -39,6 +39,7 @@
   body.theme-sep5{--page-start:#f4d0d6;--page-end:#E9A7B2;--panel:rgba(250,235,238,.94);--rose:#c66b7b;--deep:#793846;--wine:#57363c;--bubble:#dc91a0;--petal:#edc2ca;}
   body.theme-sep6{--page-start:#ffd4e5;--page-end:#FFA6C9;--panel:rgba(255,231,240,.94);--rose:#d94f85;--deep:#8f2851;--wine:#642f43;--bubble:#f184ae;--petal:#f8c4d8;}
   *{box-sizing:border-box;}
+  [hidden]{display:none!important;}
   html,body{margin:0;padding:0;}
   body{
     font-family:var(--body);
@@ -54,7 +55,7 @@
     max-width:480px;margin:0 auto;
     background:transparent;
     position:relative;z-index:1;overflow:hidden;
-    box-shadow:0 0 40px rgba(120,20,60,.25);
+    box-shadow:none;
   }
 
   /* ---------- Photo collage background ---------- */
@@ -66,7 +67,7 @@
   @keyframes drift{from{transform:scale(1.08) translateY(0);}to{transform:scale(1.12) translateY(-2%);}}
   body.app-open{background:var(--page-end);}
   body.app-open #collageBg{opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s ease;}
-  body.app-open #app{background:linear-gradient(180deg,var(--page-start) 0%,var(--page-end) 100%);transition:background .3s ease;}
+  body.app-open #app{background:linear-gradient(180deg,var(--page-start) 0%,var(--page-end) 100%);box-shadow:0 0 40px rgba(120,20,60,.25);transition:background .3s ease;}
 
   /* ---------- Header ---------- */
   header{
@@ -420,7 +421,7 @@
     setGrocery(set){ localStorage.setItem("lata_grocery",JSON.stringify([...set])); },
   };
 
-  let active = "sep4"; // default to first big day
+  let active = "sep3"; // open on the first day
 
   // ---------- render tabs ----------
   function renderTabs(){
